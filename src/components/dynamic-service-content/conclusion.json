@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_dynamic_service_content_conclusion_s",
+  "info": {
+    "displayName": "conclusion "
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "paragraph": {
+      "type": "text"
+    },
+    "button_text": {
+      "type": "string"
+    },
+    "button_slug": {
+      "type": "string"
+    },
+    "testimonial_heading": {
+      "type": "string"
+    },
+    "testimonial_description": {
+      "type": "string"
+    },
+    "testimonial_name": {
+      "type": "string"
+    },
+    "testimonial_area": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

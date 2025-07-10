@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_dynamic_service_content_service_names",
+  "info": {
+    "displayName": "Service Name"
+  },
+  "options": {},
+  "attributes": {
+    "breadcrumbs": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "button_text": {
+      "type": "string"
+    },
+    "button_slug": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}

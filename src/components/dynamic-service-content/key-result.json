@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_dynamic_service_content_key_results",
+  "info": {
+    "displayName": "Key Result"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "paragraph": {
+      "type": "text"
+    },
+    "result_cards": {
+      "type": "component",
+      "component": "common-component.cards",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

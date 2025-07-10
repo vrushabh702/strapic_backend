@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_dynamic_service_content_service_project_overviews",
+  "info": {
+    "displayName": "Service Project Overview"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "paragraph": {
+      "type": "blocks"
+    },
+    "subheading": {
+      "type": "string"
+    },
+    "list": {
+      "type": "component",
+      "component": "common-component.list",
+      "repeatable": true
+    },
+    "bulletType": {
+      "type": "string"
+    },
+    "box_info_heading": {
+      "type": "string"
+    },
+    "projectInfo": {
+      "type": "component",
+      "component": "common-component.project-info",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

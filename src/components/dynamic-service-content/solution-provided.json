@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_dynamic_service_content_solution_provideds",
+  "info": {
+    "displayName": "Solution Provided"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "paragraphs": {
+      "type": "component",
+      "component": "common-component.paragraphs",
+      "repeatable": true
+    },
+    "solutionCards": {
+      "type": "component",
+      "component": "common-component.cards",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

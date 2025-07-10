@@ -28,6 +28,12 @@
       "relation": "manyToMany",
       "target": "api::case-categories-2.case-categories-2",
       "mappedBy": "category_2_s"
+    },
+    "blogs": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::blog.blog",
+      "mappedBy": "category_2s"
     }
   }
 }

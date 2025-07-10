@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_common_component_project_infos",
+  "info": {
+    "displayName": "Project Info"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

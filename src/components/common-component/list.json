@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_common_component_lists",
+  "info": {
+    "displayName": "List"
+  },
+  "options": {},
+  "attributes": {
+    "list": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}
