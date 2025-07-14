@@ -50,6 +50,9 @@
       "relation": "oneToMany",
       "target": "api::blog.blog",
       "mappedBy": "author"
+    },
+    "slug": {
+      "type": "string"
     }
   }
 }
