@@ -47,9 +47,9 @@
     },
     "blogs": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::blog.blog",
-      "mappedBy": "author"
+      "mappedBy": "authors"
     },
     "slug": {
       "type": "string"

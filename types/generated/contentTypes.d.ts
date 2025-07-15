@@ -423,7 +423,7 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
   attributes: {
     author_designation: Schema.Attribute.String;
     author_name: Schema.Attribute.String;
-    blogs: Schema.Attribute.Relation<'oneToMany', 'api::blog.blog'>;
+    blogs: Schema.Attribute.Relation<'manyToMany', 'api::blog.blog'>;
     button_text: Schema.Attribute.String;
     button_url: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
@@ -459,7 +459,7 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    author: Schema.Attribute.Relation<'manyToOne', 'api::author.author'>;
+    authors: Schema.Attribute.Relation<'manyToMany', 'api::author.author'>;
     category_2s: Schema.Attribute.Relation<
       'manyToMany',
       'api::category-2.category-2'
