@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_blogs_headered_round_bullet_lists",
+  "info": {
+    "displayName": "HeaderedRoundBulletList"
+  },
+  "options": {},
+  "attributes": {
+    "blogListHeading": {
+      "type": "component",
+      "component": "common-component.heading",
+      "repeatable": false
+    },
+    "blogList": {
+      "type": "component",
+      "component": "common-component.list",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

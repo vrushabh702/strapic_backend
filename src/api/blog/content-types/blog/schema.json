@@ -38,6 +38,12 @@
       "relation": "manyToMany",
       "target": "api::category-2.category-2",
       "inversedBy": "blogs"
+    },
+    "individual_blogs": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::individual-blog.individual-blog",
+      "mappedBy": "blogs"
     }
   }
 }

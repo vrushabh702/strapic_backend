@@ -1,5 +1,19 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface BlogsHeaderedRoundBulletList extends Struct.ComponentSchema {
+  collectionName: 'components_blogs_headered_round_bullet_lists';
+  info: {
+    displayName: 'HeaderedRoundBulletList';
+  };
+  attributes: {
+    blogList: Schema.Attribute.Component<'common-component.list', true>;
+    blogListHeading: Schema.Attribute.Component<
+      'common-component.heading',
+      false
+    >;
+  };
+}
+
 export interface CommonComponentCards extends Struct.ComponentSchema {
   collectionName: 'components_common_component_cards';
   info: {
@@ -7,6 +21,16 @@ export interface CommonComponentCards extends Struct.ComponentSchema {
   };
   attributes: {
     description: Schema.Attribute.Text;
+    heading: Schema.Attribute.String;
+  };
+}
+
+export interface CommonComponentHeading extends Struct.ComponentSchema {
+  collectionName: 'components_common_component_headings';
+  info: {
+    displayName: 'heading';
+  };
+  attributes: {
     heading: Schema.Attribute.String;
   };
 }
@@ -151,7 +175,9 @@ export interface DynamicServiceContentSolutionProvided
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'blogs.headered-round-bullet-list': BlogsHeaderedRoundBulletList;
       'common-component.cards': CommonComponentCards;
+      'common-component.heading': CommonComponentHeading;
       'common-component.list': CommonComponentList;
       'common-component.paragraphs': CommonComponentParagraphs;
       'common-component.project-info': CommonComponentProjectInfo;

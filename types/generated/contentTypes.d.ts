@@ -468,6 +468,10 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    individual_blogs: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::individual-blog.individual-blog'
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::blog.blog'> &
       Schema.Attribute.Private;
@@ -729,6 +733,39 @@ export interface ApiDynamicServiceDynamicService
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.String;
     title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiIndividualBlogIndividualBlog
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'individual_blogs';
+  info: {
+    displayName: 'Individual Blog';
+    pluralName: 'individual-blogs';
+    singularName: 'individual-blog';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    blogs: Schema.Attribute.Relation<'manyToMany', 'api::blog.blog'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    list_block: Schema.Attribute.Component<
+      'blogs.headered-round-bullet-list',
+      true
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::individual-blog.individual-blog'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1254,6 +1291,7 @@ declare module '@strapi/strapi' {
       'api::category-2.category-2': ApiCategory2Category2;
       'api::category.category': ApiCategoryCategory;
       'api::dynamic-service.dynamic-service': ApiDynamicServiceDynamicService;
+      'api::individual-blog.individual-blog': ApiIndividualBlogIndividualBlog;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
