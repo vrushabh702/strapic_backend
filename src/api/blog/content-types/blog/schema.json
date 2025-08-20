@@ -14,21 +14,16 @@
     "title": {
       "type": "string",
       "required": true
-      "type": "string",
-      "required": true
     },
     "slug": {
       "type": "string"
     },
     "image": {
       "type": "media",
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "images"
       ]
     },
     "meta_title": {
