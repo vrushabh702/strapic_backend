@@ -30,8 +30,7 @@
       "required": true,
       "multiple": false,
       "allowedTypes": [
-        "images",
-        "files"
+        "images"
       ]
     },
     "meta_title": {
@@ -51,6 +50,8 @@
       "type": "uid",
       "targetField": "title",
       "required": true
-    }
+    },
+   
+    
   }
 }

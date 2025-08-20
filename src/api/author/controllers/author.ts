@@ -7,7 +7,7 @@ import { factories } from '@strapi/strapi'
 export default factories.createCoreController('api::author.author',
     () => ({
         async find(ctx: any) {
-            const { data, meta } = await super.find(ctx);
+            const { data } = await super.find(ctx);
             const transformed = data.map((item: any) => {
                 return {
                     id: item.id,
