@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "individual_blogs",
+  "info": {
+    "singularName": "individual-blog",
+    "pluralName": "individual-blogs",
+    "displayName": "Individual Blog"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "blogs": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::blog.blog",
+      "inversedBy": "individual_blogs"
+    },
+    "list_block": {
+      "type": "component",
+      "component": "blogs.headered-round-bullet-list",
+      "repeatable": true
+    }
+  }
+}
