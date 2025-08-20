@@ -12,7 +12,8 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "blogs_categories": {
       "type": "relation",
@@ -26,17 +27,19 @@
     },
     "image": {
       "type": "media",
-      "multiple": true,
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
-        "images",
-        "files"
+        "images"
       ]
     },
     "meta_title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "meta_description": {
-      "type": "string"
+      "type": "text",
+      "required": true
     },
     "active_status": {
       "type": "boolean",
