@@ -12,38 +12,45 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
-    "slug": {
-      "type": "string"
+    "blogs_categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blogs-category.blogs-category"
+    },
+    "author_name": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::author.author"
     },
     "image": {
       "type": "media",
+      "required": true,
       "multiple": false,
       "allowedTypes": [
         "images",
-        "files",
-        "videos",
-        "audios"
+        "files"
       ]
     },
-    "authors": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::author.author",
-      "inversedBy": "blogs"
+    "meta_title": {
+      "type": "string",
+      "required": true
     },
-    "category_2s": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::category-2.category-2",
-      "inversedBy": "blogs"
+    "meta_description": {
+      "type": "string",
+      "required": true
     },
-    "individual_blogs": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::individual-blog.individual-blog",
-      "mappedBy": "blogs"
+    "active_status": {
+      "type": "boolean",
+      "required": true,
+      "default": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
     }
   }
 }
