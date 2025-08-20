@@ -1,5 +1,25 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface BlogsBlogContent extends Struct.ComponentSchema {
+  collectionName: 'components_blogs_blog_contents';
+  info: {
+    displayName: 'blog_content';
+    icon: 'arrowLeft';
+  };
+  attributes: {};
+}
+
+export interface BlogsBlogDescription extends Struct.ComponentSchema {
+  collectionName: 'components_blogs_blog_descriptions';
+  info: {
+    displayName: 'blog_description';
+    icon: 'bold';
+  };
+  attributes: {
+    blog_content: Schema.Attribute.RichText;
+  };
+}
+
 export interface BlogsHeaderedRoundBulletList extends Struct.ComponentSchema {
   collectionName: 'components_blogs_headered_round_bullet_lists';
   info: {
@@ -175,6 +195,8 @@ export interface DynamicServiceContentSolutionProvided
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'blogs.blog-content': BlogsBlogContent;
+      'blogs.blog-description': BlogsBlogDescription;
       'blogs.headered-round-bullet-list': BlogsHeaderedRoundBulletList;
       'common-component.cards': CommonComponentCards;
       'common-component.heading': CommonComponentHeading;
