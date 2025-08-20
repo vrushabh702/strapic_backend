@@ -20,7 +20,7 @@ export default factories.createCoreController('api::blog.blog',
                     title: item.title,
                     slug: item.slug,
                     author,
-                    image_url: item.image[0]?.url || null,
+                    image_url: item.image?.url || null,
                     categories
                 };
             });
