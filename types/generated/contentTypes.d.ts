@@ -107,6 +107,43 @@ export interface AdminApiTokenPermission extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface AdminAuditLog extends Struct.CollectionTypeSchema {
+  collectionName: 'strapi_audit_logs';
+  info: {
+    displayName: 'Audit Log';
+    pluralName: 'audit-logs';
+    singularName: 'audit-log';
+  };
+  options: {
+    draftAndPublish: false;
+    timestamps: false;
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    action: Schema.Attribute.String & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    date: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'admin::audit-log'> &
+      Schema.Attribute.Private;
+    payload: Schema.Attribute.JSON;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<'oneToOne', 'admin::user'>;
+  };
+}
+
 export interface AdminPermission extends Struct.CollectionTypeSchema {
   collectionName: 'admin_permissions';
   info: {
@@ -384,6 +421,11 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    author_designation: Schema.Attribute.String;
+    author_name: Schema.Attribute.String;
+    blogs: Schema.Attribute.Relation<'manyToMany', 'api::blog.blog'>;
+    button_text: Schema.Attribute.String;
+    button_url: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -392,7 +434,7 @@ export interface ApiAuthorAuthor extends Struct.CollectionTypeSchema {
     email: Schema.Attribute.Email &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
-    expertise: Schema.Attribute.String;
+    expertise: Schema.Attribute.String & Schema.Attribute.Required;
     image: Schema.Attribute.Media<'images' | 'files', true> &
       Schema.Attribute.Required;
     linkedin: Schema.Attribute.String &
@@ -425,7 +467,8 @@ export interface ApiBlogDetailBlogDetail extends Struct.CollectionTypeSchema {
   };
   attributes: {
     blog: Schema.Attribute.Relation<'oneToOne', 'api::blog.blog'>;
-    blog_content: Schema.Attribute.DynamicZone<['blogs.blog-description']>;
+    blog_content: Schema.Attribute.DynamicZone<['blogs.blog-description']> &
+      Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -436,6 +479,7 @@ export interface ApiBlogDetailBlogDetail extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -453,33 +497,31 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    active_status: Schema.Attribute.Boolean &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<true>;
-    author_name: Schema.Attribute.Relation<'oneToOne', 'api::author.author'>;
-    blogs_categories: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::blogs-category.blogs-category'
+    authors: Schema.Attribute.Relation<'manyToMany', 'api::author.author'>;
+    category_2s: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::category-2.category-2'
     >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    image: Schema.Attribute.Media<'images' | 'files', true>;
+    image: Schema.Attribute.Media<'images' | 'files', true> &
+      Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::blog.blog'> &
       Schema.Attribute.Private;
-    meta_description: Schema.Attribute.String;
-    meta_title: Schema.Attribute.String;
+    meta_description: Schema.Attribute.String & Schema.Attribute.Required;
+    meta_title: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
-    title: Schema.Attribute.String;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
   };
 }
 
-export interface ApiBlogsCategoryBlogsCategory
+export interface ApiCaseCategories2CaseCategories2
   extends Struct.CollectionTypeSchema {
   collectionName: 'blogs_categories';
   info: {
@@ -501,21 +543,21 @@ export interface ApiBlogsCategoryBlogsCategory
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID<'title'>;
-    title: Schema.Attribute.String;
+    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
   };
 }
 
-export interface ApiCaseStudyCategoryCaseStudyCategory
+export interface ApiCaseCategoryCaseCategory
   extends Struct.CollectionTypeSchema {
-  collectionName: 'case_study_categories';
+  collectionName: 'case_categories';
   info: {
-    displayName: 'case-study-category';
-    pluralName: 'case-study-categories';
-    singularName: 'case-study-category';
+    displayName: 'Case Category';
+    pluralName: 'case-categories';
+    singularName: 'case-category';
   };
   options: {
     draftAndPublish: true;
@@ -530,11 +572,47 @@ export interface ApiCaseStudyCategoryCaseStudyCategory
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::case-study-category.case-study-category'
+      'api::case-category.case-category'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCaseStudies2CaseStudies2
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'case_studies_2s';
+  info: {
+    displayName: 'Case Studies 2';
+    pluralName: 'case-studies-2s';
+    singularName: 'case-studies-2';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    caseStudies_id: Schema.Attribute.UID;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    imageUrl: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::case-studies-2.case-studies-2'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    relation_case_id: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::category-2.category-2'
+    >;
+    routeUrl: Schema.Attribute.String;
+    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -544,7 +622,7 @@ export interface ApiCaseStudyCategoryCaseStudyCategory
 export interface ApiCaseStudyCaseStudy extends Struct.CollectionTypeSchema {
   collectionName: 'case_studies';
   info: {
-    displayName: 'case-study';
+    displayName: 'Case Study';
     pluralName: 'case-studies';
     singularName: 'case-study';
   };
@@ -552,18 +630,16 @@ export interface ApiCaseStudyCaseStudy extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    active_status: Schema.Attribute.Boolean &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<true>;
-    case_study_categories: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::case-study-category.case-study-category'
+    case_categories: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::case-category.case-category'
     >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text & Schema.Attribute.Required;
-    image: Schema.Attribute.Media<'images' | 'files'>;
+    image: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -571,8 +647,155 @@ export interface ApiCaseStudyCaseStudy extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID<'title'>;
+    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
     title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCategory2Category2 extends Struct.CollectionTypeSchema {
+  collectionName: 'category_2s';
+  info: {
+    displayName: 'Category 2';
+    pluralName: 'category-2s';
+    singularName: 'category-2';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    blogs: Schema.Attribute.Relation<'manyToMany', 'api::blog.blog'>;
+    case_categories_2s: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::case-categories-2.case-categories-2'
+    >;
+    categories: Schema.Attribute.String;
+    categories_id: Schema.Attribute.UID;
+    category_id: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::case-studies-2.case-studies-2'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::category-2.category-2'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
+  collectionName: 'categories';
+  info: {
+    displayName: 'Category';
+    pluralName: 'categories';
+    singularName: 'category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    case_categories: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::case-category.case-category'
+    >;
+    categorys: Schema.Attribute.String & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::category.category'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiDynamicServiceDynamicService
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'dynamic_services';
+  info: {
+    displayName: 'Dynamic Service';
+    pluralName: 'dynamic-services';
+    singularName: 'dynamic-service';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.DynamicZone<
+      [
+        'dynamic-service-content.service-project-overview',
+        'dynamic-service-content.project-key-goals',
+        'dynamic-service-content.solution-provided',
+        'dynamic-service-content.key-result',
+        'dynamic-service-content.image-gallary',
+        'dynamic-service-content.conclusion',
+        'dynamic-service-content.service-name',
+      ]
+    >;
+    coverImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::dynamic-service.dynamic-service'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiIndividualBlogIndividualBlog
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'individual_blogs';
+  info: {
+    displayName: 'Individual Blog';
+    pluralName: 'individual-blogs';
+    singularName: 'individual-blog';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    blogs: Schema.Attribute.Relation<'manyToMany', 'api::blog.blog'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    list_block: Schema.Attribute.Component<
+      'blogs.headered-round-bullet-list',
+      true
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::individual-blog.individual-blog'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1083,17 +1306,22 @@ declare module '@strapi/strapi' {
     export interface ContentTypeSchemas {
       'admin::api-token': AdminApiToken;
       'admin::api-token-permission': AdminApiTokenPermission;
+      'admin::audit-log': AdminAuditLog;
       'admin::permission': AdminPermission;
       'admin::role': AdminRole;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::author.author': ApiAuthorAuthor;
-      'api::blog-detail.blog-detail': ApiBlogDetailBlogDetail;
       'api::blog.blog': ApiBlogBlog;
-      'api::blogs-category.blogs-category': ApiBlogsCategoryBlogsCategory;
-      'api::case-study-category.case-study-category': ApiCaseStudyCategoryCaseStudyCategory;
+      'api::case-categories-2.case-categories-2': ApiCaseCategories2CaseCategories2;
+      'api::case-category.case-category': ApiCaseCategoryCaseCategory;
+      'api::case-studies-2.case-studies-2': ApiCaseStudies2CaseStudies2;
       'api::case-study.case-study': ApiCaseStudyCaseStudy;
+      'api::category-2.category-2': ApiCategory2Category2;
+      'api::category.category': ApiCategoryCategory;
+      'api::dynamic-service.dynamic-service': ApiDynamicServiceDynamicService;
+      'api::individual-blog.individual-blog': ApiIndividualBlogIndividualBlog;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

@@ -12,41 +12,36 @@
   "pluginOptions": {},
   "attributes": {
     "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
       "type": "string"
-    },
-    "blogs_categories": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::blogs-category.blogs-category"
-    },
-    "author_name": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::author.author"
     },
     "image": {
       "type": "media",
       "multiple": true,
+      "required": true,
       "allowedTypes": [
         "images",
-        "files"
+        "files",
+        "videos",
+        "audios"
       ]
     },
     "meta_title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "meta_description": {
-      "type": "string"
-    },
-    "active_status": {
-      "type": "boolean",
-      "required": true,
-      "default": true
-    },
-    "slug": {
-      "type": "uid",
-      "targetField": "title",
+      "type": "string",
       "required": true
+    },
+    "individual_blogs": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::individual-blog.individual-blog",
+      "mappedBy": "blogs"
     }
   }
 }
