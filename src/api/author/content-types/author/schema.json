@@ -11,44 +11,48 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "name": {
-      "type": "string",
-      "required": true
+    "author_name": {
+      "type": "string"
     },
-    "designation": {
-      "type": "string",
-      "required": true
+    "author_designation": {
+      "type": "string"
     },
     "expertise": {
       "type": "string"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "name",
-      "required": true
+    "button_text": {
+      "type": "string"
+    },
+    "button_url": {
+      "type": "string"
+    },
+    "linkedin": {
+      "type": "string"
+    },
+    "mail": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
     },
     "image": {
       "type": "media",
-      "multiple": true,
-      "required": true,
+      "multiple": false,
       "allowedTypes": [
         "images",
-        "files"
+        "files",
+        "videos",
+        "audios"
       ]
     },
-    "email": {
-      "type": "email",
-      "required": true,
-      "unique": true
+    "blogs": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::blog.blog",
+      "mappedBy": "authors"
     },
-    "linkedin": {
-      "type": "string",
-      "required": true,
-      "unique": true
-    },
-    "description": {
-      "type": "text",
-      "required": true
+    "slug": {
+      "type": "string"
     }
   }
 }

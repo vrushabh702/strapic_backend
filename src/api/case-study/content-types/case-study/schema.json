@@ -4,7 +4,7 @@
   "info": {
     "singularName": "case-study",
     "pluralName": "case-studies",
-    "displayName": "case-study"
+    "displayName": "Case Study"
   },
   "options": {
     "draftAndPublish": true
@@ -13,34 +13,25 @@
   "attributes": {
     "title": {
       "type": "string",
-      "required": true,
-      "unique": false
+      "required": true
     },
     "description": {
       "type": "text",
       "required": true
     },
-    "case_study_categories": {
+    "imageUrl": {
+      "type": "string",
+      "required": true
+    },
+    "routeUrl": {
+      "type": "string",
+      "required": true
+    },
+    "case_categories": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::case-study-category.case-study-category"
-    },
-    "active_status": {
-      "type": "boolean",
-      "required": true,
-      "default": true
-    },
-    "image": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images",
-        "files"
-      ]
-    },
-    "slug": {
-      "type": "uid",
-      "targetField": "title"
+      "relation": "manyToMany",
+      "target": "api::case-category.case-category",
+      "mappedBy": "case_studies"
     }
   }
 }
