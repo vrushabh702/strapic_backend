@@ -15,13 +15,20 @@
       "type": "string",
       "required": true
     },
-    "slug": {
-      "type": "string"
+    "blogs_categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blogs-category.blogs-category"
+    },
+    "author_name": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::author.author"
     },
     "image": {
       "type": "media",
-      "multiple": false,
       "required": true,
+      "multiple": false,
       "allowedTypes": [
         "images"
       ]
@@ -44,11 +51,7 @@
       "targetField": "title",
       "required": true
     },
-    "individual_blogs": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::individual-blog.individual-blog",
-      "mappedBy": "blogs"
-    }
+   
+    
   }
 }
