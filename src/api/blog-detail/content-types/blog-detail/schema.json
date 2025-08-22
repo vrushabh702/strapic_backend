@@ -17,11 +17,13 @@
       "target": "api::blog.blog"
     },
     "blog_content": {
+      "type": "richtext"
+    },
+    "faq": {
       "type": "dynamiczone",
       "components": [
-        "blogs.blog-description"
-      ],
-      "required": true
+        "faq.faq"
+      ]
     }
   }
 }

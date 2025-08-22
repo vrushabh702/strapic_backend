@@ -1,5 +1,41 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface AppeakServiceForTechnologyAppeakServiceForTechnology
+  extends Struct.ComponentSchema {
+  collectionName: 'components_appeak_service_for_technology_appeak_service_for_technologies';
+  info: {
+    displayName: 'appeak_service_for_technology';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface BenefitsBenefit extends Struct.ComponentSchema {
+  collectionName: 'components_benefits_benefits';
+  info: {
+    displayName: 'benefit';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface BenefitsBenefitOfAppeak extends Struct.ComponentSchema {
+  collectionName: 'components_benefits_benefit_of_appeaks';
+  info: {
+    displayName: 'benefit_of_appeak';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface BlogsBlogContent extends Struct.ComponentSchema {
   collectionName: 'components_blogs_blog_contents';
   info: {
@@ -192,9 +228,92 @@ export interface DynamicServiceContentSolutionProvided
   };
 }
 
+export interface FaqTitleFaqTitle extends Struct.ComponentSchema {
+  collectionName: 'components_faq_title_faq_titles';
+  info: {
+    displayName: 'faq_title';
+  };
+  attributes: {
+    faq_title: Schema.Attribute.String;
+  };
+}
+
+export interface FaqFaq extends Struct.ComponentSchema {
+  collectionName: 'components_faq_faqs';
+  info: {
+    displayName: 'Faq';
+  };
+  attributes: {
+    answer: Schema.Attribute.Text;
+    question: Schema.Attribute.String;
+  };
+}
+
+export interface FaqServiceFaq extends Struct.ComponentSchema {
+  collectionName: 'components_faq_service_faqs';
+  info: {
+    displayName: 'service_faq';
+  };
+  attributes: {
+    answer: Schema.Attribute.Text & Schema.Attribute.Required;
+    question: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface HowToChooseAppeakHowToChooseAppeak
+  extends Struct.ComponentSchema {
+  collectionName: 'components_how_to_choose_appeak_how_to_choose_appeaks';
+  info: {
+    displayName: 'how_to_choose_appeak';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface QuestionQuestion extends Struct.ComponentSchema {
+  collectionName: 'components_question_questions';
+  info: {
+    displayName: 'Question';
+  };
+  attributes: {
+    Question: Schema.Attribute.String;
+  };
+}
+
+export interface ReasonsReason extends Struct.ComponentSchema {
+  collectionName: 'components_reasons_reasons';
+  info: {
+    displayName: 'reason';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface WhyCityChooseAppeakWhyCityChooseAppeak
+  extends Struct.ComponentSchema {
+  collectionName: 'components_why_city_choose_appeak_why_city_choose_appeaks';
+  info: {
+    displayName: 'why_city_choose_appeak';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'appeak-service-for-technology.appeak-service-for-technology': AppeakServiceForTechnologyAppeakServiceForTechnology;
+      'benefits.benefit': BenefitsBenefit;
+      'benefits.benefit-of-appeak': BenefitsBenefitOfAppeak;
       'blogs.blog-content': BlogsBlogContent;
       'blogs.blog-description': BlogsBlogDescription;
       'blogs.headered-round-bullet-list': BlogsHeaderedRoundBulletList;
@@ -210,6 +329,13 @@ declare module '@strapi/strapi' {
       'dynamic-service-content.service-name': DynamicServiceContentServiceName;
       'dynamic-service-content.service-project-overview': DynamicServiceContentServiceProjectOverview;
       'dynamic-service-content.solution-provided': DynamicServiceContentSolutionProvided;
+      'faq-title.faq-title': FaqTitleFaqTitle;
+      'faq.faq': FaqFaq;
+      'faq.service-faq': FaqServiceFaq;
+      'how-to-choose-appeak.how-to-choose-appeak': HowToChooseAppeakHowToChooseAppeak;
+      'question.question': QuestionQuestion;
+      'reasons.reason': ReasonsReason;
+      'why-city-choose-appeak.why-city-choose-appeak': WhyCityChooseAppeakWhyCityChooseAppeak;
     }
   }
 }

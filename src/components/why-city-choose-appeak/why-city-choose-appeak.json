@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_why_city_choose_appeak_why_city_choose_appeaks",
+  "info": {
+    "displayName": "why_city_choose_appeak"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    }
+  },
+  "config": {}
+}

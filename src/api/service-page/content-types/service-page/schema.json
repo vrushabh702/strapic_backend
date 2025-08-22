@@ -1,0 +1,91 @@
+{
+  "kind": "collectionType",
+  "collectionName": "service_pages",
+  "info": {
+    "singularName": "service-page",
+    "pluralName": "service-pages",
+    "displayName": "Service Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "cities": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::city.city"
+    },
+    "service": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::service.service"
+    },
+    "banner_title": {
+      "type": "string",
+      "required": true
+    },
+    "banner_description": {
+      "type": "richtext",
+      "required": false
+    },
+    "why_only_perticular_technology": {
+      "type": "richtext",
+      "required": false
+    },
+    "benefits_of_technology_card": {
+      "type": "dynamiczone",
+      "components": [
+        "benefits.benefit"
+      ]
+    },
+    "why_appeak": {
+      "type": "richtext",
+      "required": false
+    },
+    "reasons_of_why_appeak": {
+      "type": "dynamiczone",
+      "components": [
+        "reasons.reason"
+      ]
+    },
+    "benefits_of_appeak": {
+      "type": "dynamiczone",
+      "components": [
+        "benefits.benefit-of-appeak"
+      ]
+    },
+    "appeak_service_for_technology": {
+      "type": "dynamiczone",
+      "components": [
+        "appeak-service-for-technology.appeak-service-for-technology"
+      ]
+    },
+    "why_city_choose_appeak": {
+      "type": "dynamiczone",
+      "components": [
+        "why-city-choose-appeak.why-city-choose-appeak"
+      ]
+    },
+    "how_to_choose_appeak": {
+      "type": "dynamiczone",
+      "components": [
+        "how-to-choose-appeak.how-to-choose-appeak"
+      ]
+    },
+    "faq": {
+      "type": "dynamiczone",
+      "components": [
+        "faq.service-faq"
+      ]
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "banner_title",
+      "required": false
+    },
+    "conclusion": {
+      "type": "richtext"
+    }
+  }
+}

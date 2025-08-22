@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_appeak_service_for_technology_appeak_service_for_technologies",
+  "info": {
+    "displayName": "appeak_service_for_technology"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    }
+  },
+  "config": {}
+}

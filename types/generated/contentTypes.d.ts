@@ -425,11 +425,11 @@ export interface ApiBlogDetailBlogDetail extends Struct.CollectionTypeSchema {
   };
   attributes: {
     blog: Schema.Attribute.Relation<'oneToOne', 'api::blog.blog'>;
-    blog_content: Schema.Attribute.DynamicZone<['blogs.blog-description']> &
-      Schema.Attribute.Required;
+    blog_content: Schema.Attribute.RichText;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    faq: Schema.Attribute.DynamicZone<['faq.faq']>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -576,6 +576,116 @@ export interface ApiCaseStudyCaseStudy extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
     title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCityCity extends Struct.CollectionTypeSchema {
+  collectionName: 'cities';
+  info: {
+    displayName: 'city';
+    pluralName: 'cities';
+    singularName: 'city';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::city.city'> &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiServicePageServicePage extends Struct.CollectionTypeSchema {
+  collectionName: 'service_pages';
+  info: {
+    displayName: 'Service Page';
+    pluralName: 'service-pages';
+    singularName: 'service-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    appeak_service_for_technology: Schema.Attribute.DynamicZone<
+      ['appeak-service-for-technology.appeak-service-for-technology']
+    >;
+    banner_description: Schema.Attribute.RichText;
+    banner_title: Schema.Attribute.String & Schema.Attribute.Required;
+    benefits_of_appeak: Schema.Attribute.DynamicZone<
+      ['benefits.benefit-of-appeak']
+    >;
+    benefits_of_technology_card: Schema.Attribute.DynamicZone<
+      ['benefits.benefit']
+    >;
+    cities: Schema.Attribute.Relation<'oneToMany', 'api::city.city'>;
+    conclusion: Schema.Attribute.RichText;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    faq: Schema.Attribute.DynamicZone<['faq.service-faq']>;
+    how_to_choose_appeak: Schema.Attribute.DynamicZone<
+      ['how-to-choose-appeak.how-to-choose-appeak']
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::service-page.service-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    reasons_of_why_appeak: Schema.Attribute.DynamicZone<['reasons.reason']>;
+    service: Schema.Attribute.Relation<'oneToOne', 'api::service.service'>;
+    slug: Schema.Attribute.UID<'banner_title'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    why_appeak: Schema.Attribute.RichText;
+    why_city_choose_appeak: Schema.Attribute.DynamicZone<
+      ['why-city-choose-appeak.why-city-choose-appeak']
+    >;
+    why_only_perticular_technology: Schema.Attribute.RichText;
+  };
+}
+
+export interface ApiServiceService extends Struct.CollectionTypeSchema {
+  collectionName: 'services';
+  info: {
+    displayName: 'service';
+    pluralName: 'services';
+    singularName: 'service';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::service.service'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1097,6 +1207,9 @@ declare module '@strapi/strapi' {
       'api::blogs-category.blogs-category': ApiBlogsCategoryBlogsCategory;
       'api::case-study-category.case-study-category': ApiCaseStudyCategoryCaseStudyCategory;
       'api::case-study.case-study': ApiCaseStudyCaseStudy;
+      'api::city.city': ApiCityCity;
+      'api::service-page.service-page': ApiServicePageServicePage;
+      'api::service.service': ApiServiceService;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

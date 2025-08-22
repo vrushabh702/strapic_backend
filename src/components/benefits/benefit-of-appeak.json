@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_benefits_benefit_of_appeaks",
+  "info": {
+    "displayName": "benefit_of_appeak"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    }
+  },
+  "config": {}
+}
