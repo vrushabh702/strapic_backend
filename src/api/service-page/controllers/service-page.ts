@@ -4,21 +4,27 @@ export default factories.createCoreController('api::service-page.service-page', 
     async find(ctx: any) {
         const { data, meta } = await super.find(ctx);
         const transformed = data.map((item: any) => {
-
+            console.log(item, 'item')
             const serviceName = item?.service ? item?.service?.name : null
 
             const cityName = item?.cities || item.cities.length !== 0 ? item?.cities[0].name : null
 
-            const benefitsOfTechnology = item.benefits_of_technology_card?.map((benefit: any) => ({
-                title: benefit.title,
-                description: benefit.description,
-            })) || [];
+            const whyOnlyPerticularTechnology = {
+                title_and_description: item.why_only_perticular_technology || null,
+                cards: item.benefits_of_technology_card?.map((benefit: any) => ({
+                    title: benefit.title,
+                    description: benefit.description,
+                })) || []
+            }
 
-            const reasonsForChooseAppeak = item.reasons_of_why_appeak?.map((reason: any) => ({
-                title: reason.title,
-                description: reason.description,
-                icon: reason.icon.url
-            })) || [];
+            const reasonForChooseAppeak = {
+                why_appeak: item.why_appeak,
+                reasons: item.reasons_of_why_appeak?.map((reason: any) => ({
+                    title: reason.title,
+                    description: reason.description,
+                    icon: reason.icon.url
+                })) || []
+            }
 
             const benefitsOfAppeak = item.reasons_of_why_appeak?.map((benefit: any) => ({
                 title: benefit.title,
@@ -51,15 +57,21 @@ export default factories.createCoreController('api::service-page.service-page', 
 
             return {
                 id: item.id,
-                faq,
-                bannerDescription: item.banner_description,
-                whyOnlyThisTechnology: item.why_only_perticular_technology,
-                whyAppeak: item.why_appeak,
-                conclusion: item.conclusion,
+
                 serviceName,
                 cityName,
-                benefitsOfTechnology,
-                reasonsForChooseAppeak,
+
+                // diff section
+                bannerDescription: item.banner_description,
+                // diff section
+                whyOnlyPerticularTechnology,
+                
+                // diff section
+                reasonForChooseAppeak,
+
+                conclusion: item.conclusion,
+                faq,
+                
                 benefitsOfAppeak,
                 appeakServiceForTechnology,
                 whyCityChooseAppeak,
