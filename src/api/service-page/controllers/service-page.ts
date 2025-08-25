@@ -4,7 +4,6 @@ export default factories.createCoreController('api::service-page.service-page', 
     async find(ctx: any) {
         const { data, meta } = await super.find(ctx);
         const transformed = data.map((item: any) => {
-            console.log(item, 'item')
             const serviceName = item?.service ? item?.service?.name : null
 
             const cityName = item?.cities || item.cities.length !== 0 ? item?.cities[0].name : null
@@ -57,25 +56,26 @@ export default factories.createCoreController('api::service-page.service-page', 
 
             return {
                 id: item.id,
-
                 serviceName,
                 cityName,
-
                 // diff section
                 bannerDescription: item.banner_description,
                 // diff section
                 whyOnlyPerticularTechnology,
-                
                 // diff section
                 reasonForChooseAppeak,
-
-                conclusion: item.conclusion,
-                faq,
-                
+                // diff section
                 benefitsOfAppeak,
+                // diff section
                 appeakServiceForTechnology,
+                // diff section
                 whyCityChooseAppeak,
-                howToChooseAppeak
+                // diff section
+                howToChooseAppeak,
+                // diff section
+                conclusion: item.conclusion,
+                // diff section
+                faq,
             };
         });
 
