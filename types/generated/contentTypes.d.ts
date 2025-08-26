@@ -624,20 +624,24 @@ export interface ApiServicePageServicePage extends Struct.CollectionTypeSchema {
     appeak_service_for_technology: Schema.Attribute.DynamicZone<
       ['appeak-service-for-technology.appeak-service-for-technology']
     >;
+    appeak_service_for_technology_title_description: Schema.Attribute.RichText;
     banner_description: Schema.Attribute.RichText;
     banner_title: Schema.Attribute.String & Schema.Attribute.Required;
     benefits_of_appeak: Schema.Attribute.DynamicZone<
       ['benefits.benefit-of-appeak']
     >;
+    benefits_of_appeak_title_discription: Schema.Attribute.RichText;
     benefits_of_technology_card: Schema.Attribute.DynamicZone<
       ['benefits.benefit']
     >;
+    benefits_of_technology_title_discription: Schema.Attribute.RichText;
     cities: Schema.Attribute.Relation<'oneToMany', 'api::city.city'>;
     conclusion: Schema.Attribute.RichText;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     faq: Schema.Attribute.DynamicZone<['faq.service-faq']>;
+    how_choose_appeak_title_description: Schema.Attribute.RichText;
     how_to_choose_appeak: Schema.Attribute.DynamicZone<
       ['how-to-choose-appeak.how-to-choose-appeak']
     >;
@@ -658,7 +662,7 @@ export interface ApiServicePageServicePage extends Struct.CollectionTypeSchema {
     why_city_choose_appeak: Schema.Attribute.DynamicZone<
       ['why-city-choose-appeak.why-city-choose-appeak']
     >;
-    why_only_perticular_technology: Schema.Attribute.RichText;
+    why_city_choose_appeak_title_description: Schema.Attribute.RichText;
   };
 }
 

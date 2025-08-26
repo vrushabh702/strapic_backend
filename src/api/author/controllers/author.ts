@@ -17,10 +17,11 @@ export default factories.createCoreController('api::author.author',
                     expertise: item.expertise,
                     email: item.email,
                     linkedin: item.linkedin,
-                    image_url: item.image[0]?.url || null,
+                    image_url: item.image ? item.image[0].url : null,
+                    slug: item.slug
                 };
             });
 
-            return transformed[0] ;
+            return { data: transformed }
         },
     }));

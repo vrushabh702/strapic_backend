@@ -295,6 +295,28 @@ export interface ReasonsReason extends Struct.ComponentSchema {
   };
 }
 
+export interface TitleAndDescriptionTitleAndDescription
+  extends Struct.ComponentSchema {
+  collectionName: 'components_title_and_description_title_and_descriptions';
+  info: {
+    displayName: 'title-and-description';
+  };
+  attributes: {
+    title_and_description: Schema.Attribute.RichText;
+  };
+}
+
+export interface WhyCityChooseAppeakAppeakServiceForTechnology
+  extends Struct.ComponentSchema {
+  collectionName: 'components_why_city_choose_appeak_appeak_service_for_technologies';
+  info: {
+    displayName: 'appeak_service_for_technology';
+  };
+  attributes: {
+    titleanddescription: Schema.Attribute.RichText;
+  };
+}
+
 export interface WhyCityChooseAppeakWhyCityChooseAppeak
   extends Struct.ComponentSchema {
   collectionName: 'components_why_city_choose_appeak_why_city_choose_appeaks';
@@ -335,6 +357,8 @@ declare module '@strapi/strapi' {
       'how-to-choose-appeak.how-to-choose-appeak': HowToChooseAppeakHowToChooseAppeak;
       'question.question': QuestionQuestion;
       'reasons.reason': ReasonsReason;
+      'title-and-description.title-and-description': TitleAndDescriptionTitleAndDescription;
+      'why-city-choose-appeak.appeak-service-for-technology': WhyCityChooseAppeakAppeakServiceForTechnology;
       'why-city-choose-appeak.why-city-choose-appeak': WhyCityChooseAppeakWhyCityChooseAppeak;
     }
   }

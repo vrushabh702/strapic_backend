@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_why_city_choose_appeak_appeak_service_for_technologies",
+  "info": {
+    "displayName": "appeak_service_for_technology"
+  },
+  "options": {},
+  "attributes": {
+    "titleanddescription": {
+      "type": "richtext"
+    }
+  },
+  "config": {}
+}

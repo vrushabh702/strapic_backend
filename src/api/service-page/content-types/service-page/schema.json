@@ -29,7 +29,7 @@
       "type": "richtext",
       "required": false
     },
-    "why_only_perticular_technology": {
+    "benefits_of_technology_title_discription": {
       "type": "richtext",
       "required": false
     },
@@ -49,11 +49,17 @@
         "reasons.reason"
       ]
     },
+    "benefits_of_appeak_title_discription": {
+      "type": "richtext"
+    },
     "benefits_of_appeak": {
       "type": "dynamiczone",
       "components": [
         "benefits.benefit-of-appeak"
       ]
+    },
+    "appeak_service_for_technology_title_description": {
+      "type": "richtext"
     },
     "appeak_service_for_technology": {
       "type": "dynamiczone",
@@ -61,17 +67,26 @@
         "appeak-service-for-technology.appeak-service-for-technology"
       ]
     },
+    "why_city_choose_appeak_title_description": {
+      "type": "richtext"
+    },
     "why_city_choose_appeak": {
       "type": "dynamiczone",
       "components": [
         "why-city-choose-appeak.why-city-choose-appeak"
       ]
     },
+    "how_choose_appeak_title_description": {
+      "type": "richtext"
+    },
     "how_to_choose_appeak": {
       "type": "dynamiczone",
       "components": [
         "how-to-choose-appeak.how-to-choose-appeak"
       ]
+    },
+    "conclusion": {
+      "type": "richtext"
     },
     "faq": {
       "type": "dynamiczone",
@@ -83,9 +98,6 @@
       "type": "uid",
       "targetField": "banner_title",
       "required": false
-    },
-    "conclusion": {
-      "type": "richtext"
     }
   }
 }

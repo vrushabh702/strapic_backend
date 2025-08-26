@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_title_and_description_title_and_descriptions",
+  "info": {
+    "displayName": "title-and-description"
+  },
+  "options": {},
+  "attributes": {
+    "title_and_description": {
+      "type": "richtext"
+    }
+  },
+  "config": {}
+}
